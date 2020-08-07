@@ -1,1 +1,1 @@
-cp -r ./site/build/* /var/www/html
+cp -r ./site/build/result/* /var/www/html
