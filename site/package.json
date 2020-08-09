@@ -4,8 +4,8 @@
   "author": "Chris Campbell",
   "license": "BSD 3-Clause License",
   "scripts": {
-    "build": "snowpack build",
-    "dev": "snowpack dev",
+    "build": "./pre.sh && snowpack build",
+    "dev": "./pre.sh && snowpack dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
