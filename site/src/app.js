@@ -1,5 +1,5 @@
 import { matchLocation, onLocationChanged } from './utils/location';
-import { render } from 'lit-html';
+import { update } from './utils/render';
 
 // TODO move into location.js
 console.log('location', window.location);
@@ -15,7 +15,7 @@ const App = async () => {
   const renderPage = async () => {
     const location = matchLocation(pages);
     const content = await location.page.load();
-    render(content(), window.document.body);
+    update(content());
   };
 
   // TODO unsubscribe? check chrome event logger

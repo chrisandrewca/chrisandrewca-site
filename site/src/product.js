@@ -1,16 +1,27 @@
 import Anchor from './utils/anchor';
 import { html } from 'lit-html';
 import Image from './elements/image';
+import { update } from './utils/render';
 
-const Product = () => html`
+(async () => {
+  const result = await fetch('/api/product/1', {
+    method: 'GET',
+    headers: { accept: 'application/json' }
+  });
 
-  ${Anchor({ content: 'Edi', href: '/' })}
-  <h1>You are good Tee</h1>
+  const { product } = await result.json();
+  update(Product(product));
+})();
+
+const Product = ({ title }) => html`
+
+  ${Anchor({ content: 'Edit', href: '/' })}
+  <h1>${title}</h1>
 
   ${Anchor({ content: 'Edit', href: '/' })}
   ${Image('chrisandrewca')}
 
-  ${Anchor({ content: 'Edi', href: '/' })}
+  ${Anchor({ content: 'Edit', href: '/' })}
   <select>
     <option>Womens</option>
     <option>Mens</option>
