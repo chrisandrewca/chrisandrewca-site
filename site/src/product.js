@@ -4,8 +4,26 @@ import Image from './elements/image';
 
 const Product = () => html`
 
-  <h1>Product page</h1>
+  ${Anchor({ content: 'Edit', href: '/' })}
+  <h1>You are good Tee</h1>
+
+  ${Anchor({ content: 'Edit', href: '/' })}
   ${Image('chrisandrewca')}
+
+  ${Anchor({ content: 'Edit', href: '/' })}
+  <select>
+    <option>Womens</option>
+    <option>Mens</option>
+  </select>
+
+  ${Anchor({ content: 'Edit', href: '/' })}
+  <select>
+    <option>Beefy</option>
+    <option>Sport</option>
+  </select>
+
+  ${Anchor({ content: 'Buy', href: '/' })}
+
   ${Anchor({ content: 'Back home', href: '/' })}`;
 
 export default Product;

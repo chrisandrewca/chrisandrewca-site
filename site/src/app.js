@@ -27,6 +27,9 @@ const App = async () => {
 
 export default App;
 
+// TODO hot reload doesn't seem to keep app on same page
+// could mean an issue for certain production scenarios
+// also annoying
 if (import.meta.hot) {
   import.meta.hot.accept();
 }

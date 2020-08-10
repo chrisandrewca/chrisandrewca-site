@@ -5,8 +5,6 @@ import Image from './elements/image';
 const Home = () => html`
 
     ${Image('chrisandrewca')}
-    <div>
-      ${Anchor({ content: 'Buy my T-Shirt', href: '/product' })}
-    </div>`;
+    ${Anchor({ content: 'Buy my T-Shirt', href: '/product' })}`;
 
 export default Home;
