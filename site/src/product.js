@@ -1,10 +1,8 @@
-import { html, render } from 'lit-html';
+import Anchor from './utils/anchor';
+import { html } from 'lit-html';
 
-const Product = () => {
-  const markup = html`
-    <h1>Product page</h1>`;
-
-  render(markup, ???); // return?
-};
+const Product = () => html`
+  <h1>Product page</h1>
+  ${Anchor({ content: 'Back home', href: '/'})}`;
 
 export default Product;

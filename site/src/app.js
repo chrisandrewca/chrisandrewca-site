@@ -1,23 +1,39 @@
-import { html, render } from 'lit-html';
+import { matchLocation } from './utils/location';
+import { render } from 'lit-html';
+import { replaceLocation } from './utils/location';
 
-const App = (document) => {
-  const app = html`
-    <picture>
-      <source type="image/webp" media="(min-width: 450px)" srcset="/media/512/chrisandrewca.webp" />
-      <source type="image/jpeg" media="(min-width: 450px)" srcset="/media/512/chrisandrewca.jpg" />
-      <source type="image/webp" media="(min-width: 321px)" srcset="/media/375/chrisandrewca.webp" />
-      <source type="image/jpeg" media="(min-width: 321px)" srcset="/media/375/chrisandrewca.jpg" />
-      <img src="/media/270/chrisandrewca.webp" /><!-- TODO fix me -->
-    </picture>
-    <div>
-      <a href='#'>Buy my T-Shirt</a>
-    </div>`;
+// TODO move into location.js
+console.log('location', window.location);
 
-  render(app, document.body);
+//
+
+const App = async () => {
+
+  const pages = [
+    { path: /^[/]$/, load: async () => (await import('./home')).default },
+    { path: /^[/]product$/, load: async () => (await import('./product')).default }
+  ];
+
+  // TODO unsubscribe? check chrome event logger
+  // but I think this is just one time, could use beforeUnload
+  window.addEventListener('setLocation', async (e) => {
+
+    const location = matchLocation(pages);
+    const content = await location.page.load();
+
+    render(content(), window.document.body);
+  });
+
+  window.onpopstate = (e, b, c) => {
+    console.log('onpopstate', { e, b, c });
+    window.dispatchEvent(new CustomEvent('setLocation', { state: e.state, title: '???', path: e.currentTarget.location.pathname }));
+  };
+
+  replaceLocation('/');
 };
+
+export default App;
 
 if (import.meta.hot) {
   import.meta.hot.accept();
 }
-
-export default App;
