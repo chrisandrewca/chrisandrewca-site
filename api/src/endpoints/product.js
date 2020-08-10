@@ -6,7 +6,7 @@ router.get('/:id', function (req, res, next) {
     product: {
       title: 'You are good Tee',
       photos: ['chrisandrewca'],
-      gender: ['Womens', 'Mens'],
+      genders: ['Womens', 'Mens'],
       styles: {
         'Womens': ['Beefy', 'Sporty'],
         'Mens': ['Beefy', 'Sporty']
