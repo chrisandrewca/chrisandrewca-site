@@ -13,6 +13,6 @@ const Anchor = ({ content, href }) => {
   }
 
   return html`<a @click=${onClick} .href=${href}>${content}</a>`;
-}
+};
 
 export default Anchor;
