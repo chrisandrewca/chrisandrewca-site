@@ -4,13 +4,13 @@ import Image from './elements/image';
 
 const Product = () => html`
 
-  ${Anchor({ content: 'Edit', href: '/' })}
+  ${Anchor({ content: 'Edi', href: '/' })}
   <h1>You are good Tee</h1>
 
   ${Anchor({ content: 'Edit', href: '/' })}
   ${Image('chrisandrewca')}
 
-  ${Anchor({ content: 'Edit', href: '/' })}
+  ${Anchor({ content: 'Edi', href: '/' })}
   <select>
     <option>Womens</option>
     <option>Mens</option>
