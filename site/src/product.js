@@ -1,8 +1,8 @@
 import Anchor from './utils/anchor';
-import { html } from 'lit-html';
+import { html, nothing } from 'lit-html';
 import Image from './elements/image';
-import { update } from './utils/render';
 import { setState } from './utils/state';
+import { update } from './utils/render';
 
 const initialStateOnly = setState(state => ({
   fields: {
@@ -39,7 +39,6 @@ const initialStateOnly = setState(state => ({
 const onGenderChanged = (e) => {
 
   const state = setState(state => ({
-
     ...state,
     fields: {
       ...state.fields,
@@ -50,7 +49,6 @@ const onGenderChanged = (e) => {
     }
   }));
 
-  console.log({ state });
   update(Product(state));
 };
 
@@ -59,32 +57,34 @@ const Product = ({
 
   fields: { gender },
   loading,
-  product: { colors, genders, photos, styles, title } } = initialStateOnly) =>
-  loading ? html`` : html`
+  product: { colors, genders, photos, styles, title } } = initialStateOnly) => {
 
-  ${Anchor({ content: 'Edit', href: '/' })}
-  <h1>${title}</h1>
+  return loading ? nothing : html`
 
-  ${Anchor({ content: 'Edit', href: '/' })}
-  ${Image(photos[0])}
+    ${Anchor({ content: 'Edit', href: '/' })}
+    <h1>${title}</h1>
 
-  ${Anchor({ content: 'Edit', href: '/' })}
-  <select @change=${onGenderChanged}>
-    ${genders.map(gender => html`<option>${gender}</option>`)}
-  </select>
+    ${Anchor({ content: 'Edit', href: '/' })}
+    ${Image(photos[0])}
 
-  ${Anchor({ content: 'Edit', href: '/' })}
-  <select>
-    ${styles[gender.value].map(style => html`<option>${style}</option>`)}
-  </select>
+    ${Anchor({ content: 'Edit', href: '/' })}
+    <select @change=${onGenderChanged}>
+      ${genders.map(gender => html`<option>${gender}</option>`)}
+    </select>
 
-  ${Anchor({ content: 'Edit', href: '/' })}
-  <select>
-    ${colors[gender.value].map(color => html`<option>${color}</option>`)}
-  </select>
+    ${Anchor({ content: 'Edit', href: '/' })}
+    <select>
+      ${styles[gender.value].map(style => html`<option>${style}</option>`)}
+    </select>
 
-  ${Anchor({ content: 'Buy', href: '/' })}
+    ${Anchor({ content: 'Edit', href: '/' })}
+    <select>
+      ${colors[gender.value].map(color => html`<option>${color}</option>`)}
+    </select>
 
-  ${Anchor({ content: 'Back home', href: '/' })}`;
+    ${Anchor({ content: 'Buy', href: '/' })}
+
+    ${Anchor({ content: 'Back home', href: '/' })}`;
+};
 
 export default Product;
