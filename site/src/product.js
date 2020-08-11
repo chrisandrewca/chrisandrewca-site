@@ -4,7 +4,7 @@ import Image from './elements/image';
 import { setState } from './utils/state';
 import { update } from './utils/render';
 
-const initialStateOnly = setState(state => ({
+const initialStateOnly = setState(() => ({
   fields: {
     gender: {}
   },

@@ -1,5 +1,6 @@
 .build
 build
-web_modules
+.env
 node_modules
 scratch
+web_modules
