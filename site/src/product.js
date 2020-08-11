@@ -20,6 +20,7 @@ const initialStateOnly = setState(() => ({
   });
 
   const { product } = await result.json();
+  console.log({ product });
   const state = setState(state => ({
     ...state,
     fields: {
