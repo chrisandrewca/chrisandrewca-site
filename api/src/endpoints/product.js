@@ -2,17 +2,17 @@ const express = require('express');
 const got = require('got');
 const router = express.Router();
 
-router.get('/:id', async (req, res, next) => {
-  console.log({ key: process.env.CUSTOM_CAT_API_KEY });
+router.get('/:tag', async (req, res, next) => {
+
   const { body } = await got('https://customcat-beta.mylocker.net/api/v1/product', {
     allowGetBody: true,
-    body: JSON.stringify({
-      api_key: process.env.CUSTOM_CAT_API_KEY // fix env
-    }),
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json' },
+    json: {
+      api_key: process.env.CUSTOM_CAT_API_KEY
+    },
+    responseType: 'json'
   });
 
-  console.log({ body });
   return res.json({
     product: {
       title: 'You are good Tee',
@@ -27,7 +27,7 @@ router.get('/:id', async (req, res, next) => {
         'Mens': ['Red', 'Blue', 'Yellow']
       }
     },
-    cc: JSON.parse(body) // TODO use fetch?
+    cc: body // TODO use fetch?
   });
 });
 

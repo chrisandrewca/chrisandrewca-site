@@ -4,7 +4,7 @@
   "author": "Chris Campbell",
   "license": "BSD 3-Clause License",
   "scripts": {
-    "dev": "nodemon ./src/www"
+    "dev": "nodemon --require dotenv/config ./src/www"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -14,6 +14,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "nodemon": "^2.0.4"
   }
 }
